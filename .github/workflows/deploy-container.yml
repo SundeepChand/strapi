@@ -40,5 +40,5 @@ jobs:
 
       - name: Build and Push to GitHub Container Registry
         run: |
-          docker -f 'Dockerfile.test' build . --tag ghcr.io/sundeepchand/strapi-test:latest
+          docker build -f 'Dockerfile.test' . --tag ghcr.io/sundeepchand/strapi-test:latest
           docker push ghcr.io/sundeepchand/strapi-test:latest
