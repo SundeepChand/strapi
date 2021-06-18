@@ -31,14 +31,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+      - name: Build and Push the Test Image to GitHub Container Registry
+        uses: mr-smithers-excellent/docker-build-push@v5
         with:
+          image: strapi-test
           registry: ghcr.io
+          dockerfile: Dockerfile.test
+          githubOrg: SundeepChand
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_PASSWORD }}
-
-      - name: Build and Push to GitHub Container Registry
-        run: |
-          docker build . --tag ghcr.io/sundeepchand/strapi-test:latest
-          docker push ghcr.io/sundeepchand/strapi-test:latest
