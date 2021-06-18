@@ -12,16 +12,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Build and Push to GitHub Container Registry
-        uses: docker/build-push-action@v1
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
         with:
-          repository: SundeepChand/strapi
           registry: ghcr.io
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_PASSWORD }}
-          tags: latest
 
+      - name: Build and Push to GitHub Container Registry
+        run: |
+          docker build . --tag ghcr.io/sundeepchand/strapi:latest
+          docker push ghcr.io/sundeepchand/strapi:latest
+        
   publish-test-image:
     runs-on: ubuntu-latest
 
