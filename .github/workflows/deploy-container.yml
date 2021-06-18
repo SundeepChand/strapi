@@ -22,8 +22,8 @@ jobs:
 
       - name: Build and Push to GitHub Container Registry
         run: |
-          docker build . --tag ghcr.io/sundeepchand/strapi:latest
-          docker push ghcr.io/sundeepchand/strapi:latest
+          docker build . --tag ghcr.io/SundeepChand/strapi:latest
+          docker push ghcr.io/SundeepChand/strapi:latest
         
   publish-test-image:
     runs-on: ubuntu-latest
